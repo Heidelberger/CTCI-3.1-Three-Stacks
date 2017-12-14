@@ -20,17 +20,38 @@ namespace CTCI_3._1_Three_Stacks
 
         private static void ImplementFixed()
         {
+            Console.WriteLine("Static array divided into 3 sections:");
+
             ThreeStacks_FixedDivision fixed_div = new ThreeStacks_FixedDivision();
 
             Random rnd = new Random((int)DateTime.Now.Ticks);
 
             // add items to stacks
+            Console.WriteLine();
+            Console.Write("Pushing onto stack 0: ");
             for (int i = 0; i < 10; ++i)
-                fixed_div.Push(0, rnd.Next());
+            {
+                int x = rnd.Next(0, 9);
+                Console.Write(x + ", ");
+                fixed_div.Push(0, x);
+            }
+            Console.WriteLine();
+            Console.Write("Pushing onto stack 1: ");
             for (int i = 0; i < 10; ++i)
-                fixed_div.Push(1, rnd.Next());
+            {
+                int x = rnd.Next(0, 9);
+                Console.Write(x + ", ");
+                fixed_div.Push(1, x);
+            }
+            Console.WriteLine();
+            Console.Write("Pushing onto stack 1: ");
             for (int i = 0; i < 10; ++i)
-                fixed_div.Push(2, rnd.Next());
+            {
+                int x = rnd.Next(0, 9);
+                Console.Write(x + ", ");
+                fixed_div.Push(2, x);
+            }
+            Console.WriteLine();
 
             // print stacks
             fixed_div.PrintStacks();
@@ -40,11 +61,13 @@ namespace CTCI_3._1_Three_Stacks
             Console.WriteLine("Peeking stack 1: " + fixed_div.Peek(1));
             Console.WriteLine("Peeking stack 2: " + fixed_div.Peek(2));
 
-            // pop stacks empty
-            Console.WriteLine();
+            // print stacks
+            fixed_div.PrintStacks();
+
+            // pop stacks            
             Console.Write("Popping Stack 0: ");
             Console.Write(fixed_div.Pop(0));
-
+            
             Console.WriteLine();
             Console.Write("Popping Stack 1: ");
             Console.Write(fixed_div.Pop(1));
@@ -52,6 +75,10 @@ namespace CTCI_3._1_Three_Stacks
             Console.WriteLine();
             Console.Write("Popping Stack 2: ");
             Console.Write(fixed_div.Pop(2));
+            Console.WriteLine();
+
+            // print stacks
+            fixed_div.PrintStacks();
         }
 
         private static void PrintHeaderMsg(int chapter, int problem, string title)
@@ -92,12 +119,12 @@ namespace CTCI_3._1_Three_Stacks
                 case 1:
                     if (cursor_1 == ((totalElements / 3) * 2) - 1)
                         throw new StackOverflowException();
-                    intArray[++cursor_0] = value;
+                    intArray[++cursor_1] = value;
                     break;
                 case 2:
                     if (cursor_2 == (totalElements - 1))
                         throw new StackOverflowException();
-                    intArray[++cursor_0] = value;
+                    intArray[++cursor_2] = value;
                     break;
             }
         }
@@ -162,20 +189,21 @@ namespace CTCI_3._1_Three_Stacks
         public void PrintStacks()
         {
             Console.WriteLine();
-            Console.Write("Stack 0:");
+            Console.Write("Stack 0: ");
             for (int i = 0; i <= cursor_0; ++i)
-                Console.Write(intArray[cursor_0 + i] + ", ");
+                Console.Write(intArray[i] + ", ");
 
             Console.WriteLine();
-            Console.Write("Stack 0:");
+            Console.Write("Stack 1: ");
             for (int i = totalElements / 3; i <= cursor_1; ++i)
-                Console.Write(intArray[cursor_0 + i] + ", ");
+                Console.Write(intArray[i] + ", ");
 
             Console.WriteLine();
-            Console.Write("Stack 0:");
-            for (int i = (totalElements / 3) * 2; i <= cursor_0; ++i)
-                Console.Write(intArray[cursor_0 + i] + ", ");
+            Console.Write("Stack 2: ");
+            for (int i = (totalElements / 3) * 2; i <= cursor_2; ++i)
+                Console.Write(intArray[i] + ", ");
 
+            Console.WriteLine();
             Console.WriteLine();
         }
     }
